@@ -6,4 +6,6 @@ jobs:
     steps:
       - run:
           name: build aplication
-          command: ng build
+          command: | 
+                    npm i
+                    npm build
