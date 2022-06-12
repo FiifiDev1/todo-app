@@ -4,8 +4,9 @@ jobs:
     docker: 
       - image: node:14.19.3-alpine
     steps:
+      - run: 
+          name: install dependencies
+          command: npm i 
       - run:
-          name: build aplication
-          command: | 
-                    npm i
-                    npm build
+          name: build angular frontend application
+          command:  npm build
