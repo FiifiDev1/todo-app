@@ -9,4 +9,6 @@ jobs:
           command: npm i 
       - run:
           name: build angular frontend application
-          command:  npm build
+          command:  |
+                    npm build
+                    echo "build was successful"
