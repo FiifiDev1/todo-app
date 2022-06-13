@@ -6,10 +6,9 @@ jobs:
       steps:
         - run:
             name: install dependencies
-            command: npm i
-        - run:
-            name: build angular frontend
-            command: ng build
+            command:  | 
+                        npm i
+                        ng build
     Start-Backend-Server:
       docker:
         - image: node:14-alpine
