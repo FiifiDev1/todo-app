@@ -23,23 +23,24 @@ version: 2.1
             name: let me know that the jobs ran successfully
             command: echo "Jobs completed"
 workflows:
-  jobs:
-    - Install-Dependencies
-    - Build-Application:
-        requires: 
-          - Install-Dependencies
-    - ApproveFrontend-Build:
-    #Approve the workflow to continue after 
-    #the install dependencies job and build application 
-    #job has successfully completed
-        type: approval
-        requires: 
-          - Install-Dependencies
-          - Build-Application
-    - Start-Backend-Server:
-        requires:
-          - Install-Dependencies
-          - Build-Application
-    - Complete
+  Build-Start-Server-Workflow:
+      jobs:
+        - Install-Dependencies
+        - Build-Application:
+            requires: 
+              - Install-Dependencies
+        - ApproveFrontend-Build:
+        #Approve the workflow to continue after 
+        #the install dependencies job and build application 
+        #job has successfully completed
+            type: approval
+            requires: 
+              - Install-Dependencies
+              - Build-Application
+        - Start-Backend-Server:
+            requires:
+              - Install-Dependencies
+              - Build-Application
+        - Complete
 
 
