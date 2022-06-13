@@ -17,7 +17,9 @@ jobs:
         - checkout
         - run:
             name: start json server
-            command: npm run server
+            command: | 
+                      npm i
+                      npm run server
     Complete:
       docker:
         - image: node:16.15.1-alpine
