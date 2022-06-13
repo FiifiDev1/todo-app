@@ -14,6 +14,7 @@ jobs:
       docker:
         - image: node:16.15.1-alpine
       steps:
+        - checkout
         - run:
             name: start json server
             command: npm run server
@@ -35,6 +36,9 @@ workflows:
         - Start-Backend-Server:
             requires:
               - Build-Application
-        - Complete
+        - Complete:
+            requires: 
+              - Build-Application
+              - Start-Backend-Server
 
 
