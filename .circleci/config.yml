@@ -7,8 +7,7 @@ jobs:
         - run:
             name: install dependencies
             command:  | 
-                        npm i
-                        ng build
+                        cat package.json
     Start-Backend-Server:
       docker:
         - image: node:16.15.1-alpine
