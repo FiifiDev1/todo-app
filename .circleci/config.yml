@@ -13,7 +13,6 @@ jobs:
       docker:
         - image: node:16.15.1-alpine
       steps:
-        - checkout
         - run:
             name: start json server
             command: npm server
