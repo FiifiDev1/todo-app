@@ -10,6 +10,7 @@ jobs:
           command: |
             echo 'Hello World!'
             echo 'This is the delivery pipeline'
+            pwd
       - run:
           name: The Second Step
           command: |
