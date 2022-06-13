@@ -27,7 +27,7 @@ jobs:
           name: Running the Node Container
           command: |
             node -v
-workflow:
+workflows:
   My-First-Workflow:
     jobs:
       - Hello-World
