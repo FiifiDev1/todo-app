@@ -8,14 +8,14 @@ jobs:
         - run:
             name: install dependencies
             command:  | 
-                        cat package.json
+                        ng build
     Start-Backend-Server:
       docker:
         - image: node:16.15.1-alpine
       steps:
         - run:
             name: start json server
-            command: npm server
+            command: npm run server
     Complete:
       docker:
         - image: node:16.15.1-alpine
