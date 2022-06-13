@@ -8,6 +8,7 @@ jobs:
         - run:
             name: install dependencies
             command:  | 
+                        npm i
                         npm run build
     Start-Backend-Server:
       docker:
