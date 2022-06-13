@@ -2,16 +2,16 @@ version: 2.1
 jobs:
     Build-Application:
       docker:
-        - image: node:14-alpine
+        - image: 16.15.1-alpine
       steps:
         - run:
             name: install dependencies
             command:  | 
                         npm i
-                        pwd
+                        ng build
     Start-Backend-Server:
       docker:
-        - image: node:14-alpine
+        - image: 16.15.1-alpine
       steps:
         - checkout
         - run:
@@ -19,7 +19,7 @@ jobs:
             command: npm server
     Complete:
       docker:
-        - image: node:14-alpine
+        - image: 16.15.1-alpine
       steps:
         - run: 
             name: let me know that the jobs ran successfully
@@ -29,9 +29,6 @@ workflows:
       jobs:
         - Build-Application
         - ApproveFrontend-Build:
-        #Approve the workflow to continue after 
-        #the install dependencies job and build application 
-        #job has successfully completed
             type: approval
             requires: 
               - Build-Application
