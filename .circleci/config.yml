@@ -8,16 +8,22 @@ jobs:
             name: install needed dependcies
             command: npm i 
     Build-Application:
+      docker:
+        - image: node:14-alpine
       steps:
         - run:
             name: build angular frontend
             command: ng build
     Start-Backend-Server:
+      docker:
+        - image: node:14-alpine
       steps:
         - run:
             name: start json server
             command: npm server
     Complete:
+      docker:
+        - image: node:14-alpine
       steps:
         - run: 
             name: let me know that the jobs ran successfully
