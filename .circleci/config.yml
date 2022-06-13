@@ -4,6 +4,7 @@ jobs:
       docker:
         - image: node:16.15.1-alpine
       steps:
+        - checkout
         - run:
             name: install dependencies
             command:  | 
