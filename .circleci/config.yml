@@ -9,7 +9,7 @@ jobs:
             name: install dependencies
             command:  | 
                         npm i
-                        ng build
+                        npm run build
     Serve-App:
       docker:
         - image: node:16.15.1-alpine
@@ -19,7 +19,7 @@ jobs:
             name: serve application
             command: | 
                       npm i
-                      ng serve
+                      npm run serve
 workflows:
   Build-Start-Server-Workflow:
       jobs:
