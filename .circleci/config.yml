@@ -10,23 +10,16 @@ jobs:
             command:  | 
                         npm i
                         npm run build
-    Start-Backend-Server:
+    Serve-App:
       docker:
         - image: node:16.15.1-alpine
       steps:
         - checkout
         - run:
-            name: start json server
+            name: serve application
             command: | 
                       npm i
-                      npm run server
-    Complete:
-      docker:
-        - image: node:16.15.1-alpine
-      steps:
-        - run: 
-            name: let me know that the jobs ran successfully
-            command: echo "Jobs completed"
+                      ng serve
 workflows:
   Build-Start-Server-Workflow:
       jobs:
@@ -35,12 +28,9 @@ workflows:
             type: approval
             requires: 
               - Build-Application
-        - Start-Backend-Server:
-            requires:
-              - Build-Application
-        - Complete:
+        - Serve-App:
             requires: 
-              - Build-Application
-              - Start-Backend-Server
+              - ApproveFrontend-Build
+             
 
 
