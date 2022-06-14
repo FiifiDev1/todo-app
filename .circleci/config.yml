@@ -19,7 +19,7 @@ jobs:
             name: serve application
             command: | 
                       npm i
-                      npm run serve
+                      npm run start
 workflows:
   Build-Start-Server-Workflow:
       jobs:
