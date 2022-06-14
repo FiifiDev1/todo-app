@@ -9,7 +9,7 @@ jobs:
             name: install dependencies
             command:  | 
                         npm i
-                        npm run build
+                        ng build
     Serve-App:
       docker:
         - image: node:16.15.1-alpine
