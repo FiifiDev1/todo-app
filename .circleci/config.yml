@@ -28,7 +28,7 @@ workflows:
             type: approval
             requires: 
               - Build-Application
-        - Serve-App:
+        - Serve-App
 
              
 
