@@ -29,8 +29,7 @@ workflows:
             requires: 
               - Build-Application
         - Serve-App:
-            requires: 
-              - ApproveFrontend-Build
+
              
 
 
