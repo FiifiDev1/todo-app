@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   Install-Dependencies:
     docker:
-      - images: node:14-alpine
+      - image: node:14-alpine
     steps:
       - checkout
       - restore_cache:
