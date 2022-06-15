@@ -5,33 +5,15 @@ jobs:
         - image: node:16.15.1-alpine
       steps:
         - checkout
+        - restore_cache:
+            keys: my-cache
         - run:
             name: install dependencies
-            command:  | 
-                        npm i
-                        npm run build
-    Serve-App:
-      docker:
-        - image: node:16.15.1-alpine
-      steps:
-        - checkout
-        - run:
-            name: serve application
-            command: | 
-                      npm i
-                      npm run start
-workflows:
-  Build-Start-Server-Workflow:
-      jobs:
-        - Build-Application
-        - ApproveFrontend-Build:
-            type: approval
-            requires: 
-              - Build-Application
-        - Serve-App:
-            requires:
-              - ApproveFrontend-Build
+            command: npm i 
+        - save_cache:
+            key: my-cache
+            paths:
+              - todo-app/node_modules
 
-             
 
 
