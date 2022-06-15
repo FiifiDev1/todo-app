@@ -12,7 +12,8 @@ jobs:
     # cache the dependencies if they were installed and cache missed
     - save_cache:
         key: -v2- {{checksum "package-lock.json"}}
-        path: node_modules
+        paths:
+        - node_modules
 workflows:
   Cache-Workflow:
     jobs:
