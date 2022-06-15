@@ -2,19 +2,14 @@ version: 2.1
 jobs:
   Install-Dependencies:
     docker:
-      - image: node:14-alpine
+      - images: node:14-alpine
     steps:
-    - checkout
-    # check to see if theres a cache we can restore
-    - restore_cache:
-        key: -v3- {{checksum "package.json"}}
-    # install dependencies if caches misses
-    - run: npm install
-    # cache the dependencies if they were installed and cache missed
-    - save_cache:
-        key: -v3- {{checksum "package.json"}}
-        paths:
-        - node_modules
+      - checkout
+      - restore_cache:
+          key: -v3- {{checksum "package.json"}}
+      - run: npm install
+      - save_cache:
+          key: -v3- {{checksum "package.json"}}
 workflows:
   Cache-Workflow:
     jobs:
