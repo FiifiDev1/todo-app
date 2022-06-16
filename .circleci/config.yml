@@ -38,7 +38,8 @@ jobs:
 
       - save_cache:
           key: v4 {{checksum "package.json"}}
-          path: node_modules
+          paths: 
+            - node_modules
 
       # Persist the specified paths (workspace/echo-output) into the workspace for use in downstream job.
       - persist_to_workspace:
