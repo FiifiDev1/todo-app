@@ -24,6 +24,7 @@ jobs:
   flow: 
     docker:
       - image: node:14-alpine
+    - working_directory: /tmp
     steps:
     - checkout
     - run: mkdir workspace
