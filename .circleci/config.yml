@@ -87,6 +87,10 @@ workflows:
             - test
       - AproveBeforeDeployment:
           type: approval
+          requires: 
+            - checkout
+            - test
+            - build
       - DEPLOY:
           requires:
             - AproveBeforeDeployment
