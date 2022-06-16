@@ -31,7 +31,15 @@ jobs:
     executor: my-executor
     steps:
       - checkout
+      - restore_cache:
+          key: v4 {{checksum "package.json"}}
+
       - run: npm install && ls 
+
+      - save_cache:
+          key: v4 {{checksum "package.json"}}
+          path: node_modules
+
       # Persist the specified paths (workspace/echo-output) into the workspace for use in downstream job.
       - persist_to_workspace:
           # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
@@ -46,7 +54,7 @@ jobs:
     steps: 
       - attach_workspace:
           at: .
-      - run: npm run test
+      - run: cat test.txt
 
   downstream:
     executor: my-executor
