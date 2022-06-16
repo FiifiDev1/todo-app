@@ -34,7 +34,7 @@ jobs:
       - restore_cache:
           key: v4 {{checksum "package.json"}}
 
-      - run: npm install && ls 
+      - run: npm install && pwd 
 
       - save_cache:
           key: v4 {{checksum "package.json"}}
