@@ -25,7 +25,6 @@ executors:
   my-executor:
     docker:
       - image: node:14-alpine
-    working_directory: /tmp
 
 jobs:
   flow:
