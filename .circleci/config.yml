@@ -38,7 +38,15 @@ jobs:
           # taken to be the root directory of the workspace.
           root: .
           # Must be relative path from root
+          paths:
+            - .
 
+  test:
+    executor: my-executor
+    steps: 
+      - attach_workspace:
+          at: .
+      - run: npm run test
 
   downstream:
     executor: my-executor
@@ -55,6 +63,9 @@ workflows:
   btd:
     jobs:
       - flow
+      - test:
+        requires:
+          - flow
       - downstream:
           requires:
-            - flow
+            - test
