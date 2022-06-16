@@ -27,7 +27,7 @@ executors:
       - image: node:14-alpine
 
 jobs:
-  flow:
+  checkout:
     executor: my-executor
     steps:
       - checkout
@@ -57,7 +57,7 @@ jobs:
           at: .
       - run: cat test.txt
 
-  downstream:
+  build:
     executor: my-executor
     steps:
       - attach_workspace:
@@ -68,13 +68,25 @@ jobs:
               pwd
               npm run build
 
+  DEPLOY:
+    executor: my-executor
+    steps:
+      - attach_workspace:
+          at: .
+      - run: cat deploy-script.txt
+
 workflows:
   btd:
     jobs:
-      - flow
+      - checkout
       - test:
           requires:
-          - flow
-      - downstream:
+          - checkout
+      - build:
           requires:
             - test
+      - AproveBeforeDeployment
+          type: approval
+      - DEPLOY:
+          requires:
+            - AproveBeforeDeployment
