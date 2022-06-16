@@ -36,7 +36,7 @@ jobs:
 
       - run:  |
               mkdir workspace
-              cd workspace
+              cd workspace && pwd
               npm install
 
 
