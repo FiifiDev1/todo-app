@@ -1,18 +1,48 @@
-version: 2.1
+# CACHING
+# version: 2.1
+# jobs:
+#   Install-Dependencies:
+#     docker:
+#       - image: node:14-alpine
+#     steps:
+#       - checkout
+#       - restore_cache:
+#           key: -v3- {{checksum "package.json"}}
+#       - run: npm install
+#       - save_cache:
+#           key: -v3- {{checksum "package.json"}}
+#           paths:
+#             - node_modules
+# workflows:
+#   Cache-Workflow:
+#     jobs:
+#       - Install-Dependencies
+
+# WORKSPACES
+version: 2.1 
 jobs:
-  Install-Dependencies:
+  flow: 
     docker:
       - image: node:14-alpine
     steps:
-      - checkout
-      - restore_cache:
-          key: -v3- {{checksum "package.json"}}
-      - run: npm install
-      - save_cache:
-          key: -v3- {{checksum "package.json"}}
-          paths:
-            - node_modules
+    - checkout
+    - run: mkdir workspace
+    - run: npm i 
+    - persist_workspace:
+        root: workspace
+        paths: 
+        - /
+  downstream:
+    docker:
+      - image: node:14-alpine
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: npm run build
 workflows:
-  Cache-Workflow:
+  Workspace-Workflow:
     jobs:
-      - Install-Dependencies
+      - flow
+      - downstream:
+          requires:
+            - flow
