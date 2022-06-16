@@ -39,7 +39,7 @@ jobs:
           root: workspace
           # Must be relative path from root
           paths:
-            - /
+            - workspace
 
   downstream:
     executor: my-executor
