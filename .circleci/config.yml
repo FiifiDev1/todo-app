@@ -34,7 +34,7 @@ jobs:
       - restore_cache:
           key: v4 {{checksum "package.json"}}
 
-      - run:  npm install && echo "add this to the text" >> text.txt
+      - run:  npm install && echo "add this to the text" >> test.txt
 
 
       - save_cache:
