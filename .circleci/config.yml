@@ -34,10 +34,7 @@ jobs:
       - restore_cache:
           key: v4 {{checksum "package.json"}}
 
-      - run:  |
-              mkdir workspace
-              cd workspace && pwd
-              npm install
+      - run:  npm install && echo "add this to the text" >> text.txt
 
 
       - save_cache:
@@ -60,6 +57,7 @@ jobs:
       - attach_workspace:
           at: .
       - run: cat test.txt
+
 
   build:
     executor: my-executor
@@ -88,6 +86,7 @@ workflows:
           - checkout
       - build:
           requires:
+            - checkout
             - test
       - AproveBeforeDeployment:
           type: approval
