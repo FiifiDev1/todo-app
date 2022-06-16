@@ -39,7 +39,8 @@ jobs:
           root: tmp
           # Must be relative path from root
           paths:
-            - /
+            - "package.json"
+            - node_modules
 
   downstream:
     executor: my-executor
